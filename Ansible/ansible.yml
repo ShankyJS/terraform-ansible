@@ -1,0 +1,16 @@
+---
+- hosts: all
+
+  tasks:
+    - name: Update all packages
+      apt:
+        upgrade: dist
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install LEMP Stack.
+      action: apt name={{item}} state=present
+      loop:
+        - php7.2
+        - nginx
+        - mysql-server
